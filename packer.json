@@ -1,15 +1,7 @@
 {
-  "variables": {
-    "tencentcloud_secret_id": "{{env `tencentcloud_secret_id`}}",
-    "tencentcloud_secret_key": "{{env `tencentcloud_secret_key` }}",
-    "alicloud_access_key": "{{env `alicloud_access_key`}}",
-    "alicloud_secret_key": "{{env `alicloud_secret_key`}}"
-  },
   "builders": [
     {
       "type": "tencentcloud-cvm",
-      "secret_id": "{{ user `tencentcloud_secret_id`}}",
-      "secret_key": "{{ user `tencentcloud_secret_key`}}",
       "region": "ap-hongkong",
       "zone": "ap-hongkong-1",
       "instance_type": "S2.MEDIUM4",
@@ -24,8 +16,6 @@
     },
     {
       "type":"alicloud-ecs",
-      "access_key":"{{ user `alicloud_access_key`}}",
-      "secret_key":"{{ user `alicloud_secret_key`}}",
       "region":"cn-hongkong",
       "image_name":"{{ user `image_name` }}",
       "source_image":"{{ user `ali_image_id` }}", 
