@@ -5,6 +5,7 @@
   },
   "builders": [
     {
+      "name":"tencentcloud",
       "type": "tencentcloud-cvm",
       "secret_id": "{{user `secret_id`}}",
       "secret_key": "{{user `secret_key`}}",
@@ -21,6 +22,7 @@
       "image_copy_regions":"ap-guangzhou"
     },
     {
+      "name":"alicloud",
       "type":"alicloud-ecs",
       "region":"cn-hongkong",
       "image_name":"{{ user `image_name` }}",
