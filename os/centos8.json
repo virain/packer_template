@@ -1,0 +1,9 @@
+{
+    "_comment": "CentOS8",
+    "tencent_image_id": "img-25szkc8t",
+    "tencent_ssh_username": "root",
+    "ali_image_id":"centos_8_2_x64_20G_alibase_20200914.vhd",
+    "huawei_image_id": "ea0d6e0e-99c3-406d-a873-3bb45462b624",
+    "pre_install": "yum install python3 -y",
+    "ansible_python_interpreter": "/usr/bin/python3"
+}

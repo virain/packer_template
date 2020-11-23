@@ -1,0 +1,60 @@
+{
+  "builders": [
+    {
+      "type": "tencentcloud-cvm",
+      "secret_id": "{{env `tencentcloud_secret_id`}}",
+      "secret_key": "{{env `tencentcloud_secret_key`}}",
+      "region": "ap-hongkong",
+      "zone": "ap-hongkong-1",
+      "instance_type": "S2.MEDIUM4",
+      "source_image_id": "{{ user `tencent_image_id` }}",
+      "ssh_username": "{{ user `tencent_ssh_username` }}",
+      "ssh_timeout": "30m",
+      "image_name":"{{ user `image_name` }}",
+      "disk_type": "CLOUD_PREMIUM",
+      "associate_public_ip_address": true,
+      "internet_max_bandwidth_out": "100",
+      "image_copy_regions":"ap-guangzhou"
+    },
+    {
+      "type":"alicloud-ecs",
+      "access_key":"{{env `alicloud_access_key`}}",
+      "secret_key":"{{env `alicloud_secret_key`}}",
+      "region":"cn-hongkong",
+      "image_name":"{{ user `image_name` }}",
+      "source_image":"{{ user `ali_image_id` }}", 
+      "instance_type":"ecs.t6-c1m2.large",
+      "image_copy_regions":"cn-qingdao",
+      "image_copy_names":"{{ user `image_name` }}",
+      "io_optimized":"true",
+      "internet_charge_type":"PayByTraffic",
+      "image_force_delete":true,
+      "ssh_username":"root"
+  }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": "{{ user `pre_install` }}"
+    },
+    {
+      "type": "ansible",
+      "playbook_file": "../main.yml",
+      "roles_path": "../roles",
+      "max_retries": 3,
+      "extra_arguments": "--extra-vars,{{ user `ansible_vars` }},--extra-vars,ansible_python_interpreter={{ user `ansible_python_interpreter` }}",
+      "ansible_env_vars": [ 
+        "ANSIBLE_HOST_KEY_CHECKING=False", 
+        "display_skipped_hosts=False"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo rm -rf /root/*",
+        "sudo rm -rf /home/ubuntu/*",
+        "rm -rf /root/.my.cnf"
+      ]
+    }
+  ]
+}

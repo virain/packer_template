@@ -1,0 +1,9 @@
+{
+    "_comment": "Ubuntu18.04",
+    "tencent_image_id": "img-pi0ii46r",
+    "tencent_ssh_username": "ubuntu",
+    "ali_image_id":"ubuntu_18_04_x64_20G_alibase_20200914.vhd",
+    "huawei_image_id": "ff61492a-64fd-4783-bfc6-b7db0543ce70",
+    "pre_install": "sudo apt install -y python3",
+    "ansible_python_interpreter": "/usr/bin/python3"
+}
