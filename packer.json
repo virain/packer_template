@@ -1,7 +1,13 @@
 {
+  "variables": {
+    "secret_id": "{{env `TENCENTCLOUD_ACCESS_KEY`}}",
+    "secret_key": "{{env `TENCENTCLOUD_SECRET_KEY`}}"
+  },
   "builders": [
     {
       "type": "tencentcloud-cvm",
+      "secret_id": "{{user `secret_id`}}",
+      "secret_key": "{{user `secret_key`}}",
       "region": "ap-hongkong",
       "zone": "ap-hongkong-1",
       "instance_type": "S2.MEDIUM4",
