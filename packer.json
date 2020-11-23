@@ -35,8 +35,8 @@
     },
     {
       "type": "ansible",
-      "playbook_file": "../main.yml",
-      "roles_path": "../roles",
+      "playbook_file": "main.yml",
+      "roles_path": "roles",
       "max_retries": 3,
       "extra_arguments": "--extra-vars,{{ user `ansible_vars` }},--extra-vars,ansible_python_interpreter={{ user `ansible_python_interpreter` }}",
       "ansible_env_vars": [ 
