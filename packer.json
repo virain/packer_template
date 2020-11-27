@@ -3,8 +3,7 @@
     "secret_id": "{{env `TENCENTCLOUD_ACCESS_KEY`}}",
     "secret_key": "{{env `TENCENTCLOUD_SECRET_KEY`}}",
     "huawei_username": "{{env `HUAWEI_USERNAME`}}",
-    "huawei_password": "{{env `HUAWEI_PASSWORD`}}",
-    "ssh_password" : "{{ env `SSH_PASSWORD` }}"
+    "huawei_password": "{{env `HUAWEI_PASSWORD`}}"
   },
   "builders": [
     {
@@ -17,7 +16,6 @@
       "instance_type": "S5.SMALL4",
       "source_image_id": "{{ user `tencent_image_id` }}",
       "ssh_username": "{{ user `tencent_ssh_username` }}",
-      "ssh_password" : "{{ user `ssh_password` }}",
       "ssh_timeout": "30m",
       "image_name":"{{ user `image_name` }}",
       "disk_type": "CLOUD_PREMIUM",
@@ -25,7 +23,8 @@
       "internet_max_bandwidth_out": "100",
       "image_copy_regions":"ap-guangzhou",
       "vpc_id": "vpc-3tim1rq2",
-      "security_group_id":"sg-ni4d1vkh"
+      "security_group_id":"sg-ni4d1vkh",
+      "subnet_id":"subnet-0y4m3075"
     },
     {
       "name":"alicloud",
@@ -40,7 +39,6 @@
       "internet_charge_type":"PayByTraffic",
       "image_force_delete":true,
       "ssh_username":"root",
-      "ssh_password" : "{{ user `ssh_password` }}",
       "security_group_id":"sg-j6c65iwt6l83sh9mzma1",
       "vpc_id": "vpc-j6cg8bd7fm61w96qsx34d",
       "vswitch_id": "vsw-j6cwhoqo12izn93wondaj"
@@ -54,7 +52,6 @@
     "username": "{{ user `huawei_username` }}",
     "password": "{{ user `huawei_password` }}",
     "ssh_username":"root",
-    "ssh_password" : "{{ user `ssh_password` }}",
     "ssh_ip_version": "4",
     "region": "cn-east-3",
     "image_name": "test",
@@ -89,7 +86,8 @@
       "inline": [
         "sudo rm -rf /root/*",
         "sudo rm -rf /home/ubuntu/*",
-        "rm -rf /root/.my.cnf"
+        "sudo rm -rf /root/.my.cnf",
+        "sudo rm -rf ~/.ssh"
       ]
     }
   ]
